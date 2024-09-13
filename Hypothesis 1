@@ -1,0 +1,14 @@
+--This SQL query calculates the average domestic box office revenue for each movie genre and sorts the results in descending order.
+
+
+SELECT                                                                 --Specifies which coloumn.
+    C.genre,                                                           --c. idicates which table (creativetable).
+    ROUND(AVG(R.domestic_box_office), 0) AS avg_domestic_box_office    --AVG calculates the average. Round function is what it is, it rounds.
+FROM                                                                   --Specifies which table to get data from.
+    Creative C
+INNER JOIN                                                             --Combines coloums from tables.
+    Revenue R ON C.movie_id = R.movie_id                               --We are joining the creatives table with revenue table. MovieID is primary key.
+GROUP BY                                                               --Group By clause - grouping the results by genre, C is an alias for the creative table.
+    C.genre
+ORDER BY                                                               --Orderby clause order by decending or acending order.
+    avg_domestic_box_office DESC;                                      --We want to order by our new coloumn name avg_domestic_box_office in DESC order..
