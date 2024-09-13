@@ -1,0 +1,22 @@
+--This query retrieves the average international box office revenue and the number of movies for each creative type from the Movies, Revenue, and Creative tables.
+
+USE Moviesdb;                                                                 --USE which database?
+SELECT 
+	c.creative_type,                                                            --Select what we need with alias.
+    ROUND (AVG(r.international_box_office), 0) AS avg_international_revenue,  --You know the AVG & Count functions.
+    COUNT(m.movie_id) AS num_movies                                           --Note, when you create a new table use AS to define column name.
+
+FROM                                                                          --From| We want to join the movies and revenue table togehter.
+    Movies m
+JOIN 
+    Revenue r
+ON                                                                            --How? by joining them based on movie on movie_id on each column, the primary key.
+    m.movie_id = r.movie_id
+JOIN 
+    Creative c                                                                --Here we join the creative table as well so we can later group everything by creative type.
+ON 
+    m.movie_id = c.movie_id
+GROUP BY 
+    c.creative_type
+ORDER BY                                                                      --Simply we need to order the data by avg_international_revenue
+    avg_international_revenue DESC;
