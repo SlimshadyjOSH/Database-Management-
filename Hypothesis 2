@@ -1,0 +1,12 @@
+--This SQL query retrieves the production budget and opening weekend revenue for each movie from the Movies and Revenue tables, respectively.
+
+USE Moviesdb ;                 --Remeber to always open with and close your code with ;
+SELECT 
+    m.production_budget,       --Use of alias to signal which table we are talking about, here it is the movies and revenue table.
+    r.opening_weekend
+FROM 
+    Movies m                   --From function, which table to we want data from?
+ INNER JOIN                    --Joining two tables together.
+    Revenue r                
+ON                             --ON clause is still part of the JOIN cause, we want to put two tables together 
+    m.movie_id = r.movie_id;   --Joining the revenue and movies table based on movie_id. Don't forget ;
