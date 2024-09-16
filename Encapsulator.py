@@ -4,12 +4,12 @@ import pandas as pd                    #pandas data manipulation library, alias 
 #Defining database class
 class Database:                                  # 5-9 _init_ method used when creating object.
     def __init__(self, server, database):        # Three parameters, self, server and database.
-        self.server = server                     # self refrences to the object being created.
-        self.database = database                 # server and database parameter sused to connect to database.
-        self.conn = None                         # instance variables: server, database self.conn. Values set as arguments. Self.conn set to None means n0 database connection.
+        self.server = server                     # self references to the object being created.
+        self.database = database                 # server and database parameter used to connect to database.
+        self.conn = None                         # instance variables: server, database self.conn. Values are set as arguments. Self.conn set to None means n0 database connection.
         
 #Defining connect method 12-17
-    def connect(self):                           #Connect method establish connection to database using pydoc
+    def connect(self):                           #Connect method establish a connection to database using pydoc
         try:
             self.conn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+self.server+';DATABASE='+self.database+';Trusted_Connection=yes') #Connection string is constructed using the server and database instance variables, and the Trusted_Connection=yes parameter indicates that the connection should use Windows authentication.
             print("Connected to database")
@@ -17,7 +17,7 @@ class Database:                                  # 5-9 _init_ method used when c
             print(f"Error connecting to database: {e}")    #If the connection is successful, the connect method prints "Connected to database" to the console. If an error occurs, it catches the pyodbc.Error exception and prints an error message to the console.
 
 #Defining get_data method 20-27
-    def get_data(self, table_name):                        #get_data methodretrieves data from a database table. table_name parameter, which specifies the table to retrieve data from.
+    def get_data(self, table_name):                        #get_data methodretrieves data from a database table. table_name parameter, which specifies the table from which to retrieve data.
         try:
             query = f"SELECT * FROM {table_name}"          #Constructs a SQL query using the table_name parameter and executes it using the pd.read_sql function, which returns a Pandas DataFrame object. If the query is successful, the method returns the DataFrame object.
             df = pd.read_sql(query, self.conn)
