@@ -10,3 +10,8 @@ FROM
     Revenue r                
 ON                             --ON clause is still part of the JOIN cause, we want to put two tables together 
     m.movie_id = r.movie_id;   --Joining the revenue and movies table based on movie_id. Don't forget ;
+
+
+SELECT CORR(m.production_budget, r.opening_weekend) AS correlation --tried to find correlation between production_budget and opening_weekend and
+FROM Movies m                                                      --0.71632 , it indicates a moderate to strong positive correlation between two columns production_budget and opening_weekend
+JOIN Revenue r ON m.movie_id = r.movie_id;
