@@ -41,7 +41,7 @@ class MovieDatabaseManager:
         else:
             print("No connection to close.")
 
-db = Database('localhost', 'Movies', 'postgres', 'WVMaybe12.')
+db = Database('localhost', 'Movies', 'postgres', '*****')
 db.connect_to_database()
 
 movies_df = db.get_data_from_database('movies')
