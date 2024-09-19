@@ -1,22 +1,21 @@
---This query retrieves the average international box office revenue and the number of movies for each creative type from the Movies, Revenue, and Creative tables.
+--This query retrieves the average international box office revenue and the number of movies for each creative type from the Movies, Revenue1, and Creatives tables.
 
-USE Moviesdb;                                                                 --USE which database?
+USE Moviesdb;  -- Specify the database to use
 SELECT 
-	c.creative_type,                                                            --Select what we need with alias.
-    ROUND (AVG(r.international_box_office), 0) AS avg_international_revenue,  --You know the AVG & Count functions.
-    COUNT(m.movie_id) AS num_movies                                           --Note, when you create a new table use AS to define column name.
+    c.creative_type,  -- Select creative type
+    ROUND(AVG(r.international_box_office), 0) AS avg_international_revenue,  -- Calculate average international box office revenue
+    COUNT(m.movie_id) AS num_movies  -- Count the number of movies
 
-FROM                                                                          --From| We want to join the movies and revenue table togehter.
-    Movies m
+FROM 
+    Movies m  -- Use the Movies table as the base
 JOIN 
-    Revenue r
-ON                                                                            --How? by joining them based on movie on movie_id on each column, the primary key.
-    m.movie_id = r.movie_id
+    Revenue1 r  -- Join with the Revenue1 table
+    ON m.movie_id = r.movie_id  -- Join condition based on movie_id (foreign key relationship)
 JOIN 
-    Creative c                                                                --Here we join the creative table as well so we can later group everything by creative type.
-ON 
-    m.movie_id = c.movie_id
+    Creatives c  -- Join with the Creatives table
+    ON m.movie_id = c.movie_id  -- Join condition based on movie_id
+
 GROUP BY 
-    c.creative_type
-ORDER BY                                                                      --Simply we need to order the data by avg_international_revenue
-    avg_international_revenue DESC;
+    c.creative_type  -- Group by creative type
+ORDER BY 
+    avg_international_revenue DESC;  -- Order the results by average international revenue in descending order J.S
