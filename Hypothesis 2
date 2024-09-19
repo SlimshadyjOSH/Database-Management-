@@ -1,17 +1,14 @@
---This SQL query retrieves the production budget and opening weekend revenue for each movie from the Movies and Revenue tables, respectively.
+-- This SQL query retrieves the production budget and opening weekend revenue for each movie from the Movies and Revenue1 tables.
 
-USE Moviesdb ;                 --Remeber to always open with and close your code with ;
+USE Moviesdb;  -- Specify the database to use
+
 SELECT 
-    m.production_budget,       --Use of alias to signal which table we are talking about, here it is the movies and revenue table.
-    r.opening_weekend
+    m.production_budget,  -- Retrieve production budget from Movies table
+    r.opening_weekend     -- Retrieve opening weekend revenue from Revenue1 table
+
 FROM 
-    Movies m                   --From function, which table to we want data from?
- INNER JOIN                    --Joining two tables together.
-    Revenue r                
-ON                             --ON clause is still part of the JOIN cause, we want to put two tables together 
-    m.movie_id = r.movie_id;   --Joining the revenue and movies table based on movie_id. Don't forget ;
-
-
-SELECT CORR(m.production_budget, r.opening_weekend) AS correlation --tried to find correlation between production_budget and opening_weekend and
-FROM Movies m                                                      --0.71632 , it indicates a moderate to strong positive correlation between two columns production_budget and opening_weekend
-JOIN Revenue r ON m.movie_id = r.movie_id;
+    Movies m  -- Movies table alias 'm'
+INNER JOIN 
+    Revenue1 r  -- Join with the Revenue1 table using alias 'r'
+ON 
+    m.movie_id = r.movie_id;  -- Join based on movie_id (Foreign key in Revenue1 references Primary key in Movies) J.S
