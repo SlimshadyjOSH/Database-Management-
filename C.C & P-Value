@@ -1,0 +1,16 @@
+import pandas as pd
+from scipy.stats import pearsonr
+import numpy as np
+
+df = pd.read_excel("C:/Users\Admin\Desktop\Hypothesis 2.xlsx")
+
+# Clean the data
+df = df.replace([np.inf, -np.inf], np.nan)
+df = df.dropna()
+
+# Calculate the correlation coefficient
+correlation_coefficient, p_value = pearsonr(df['production_budget'], df['opening_weekend'])
+
+# Print the result
+print(f'Correlation Coefficient: {correlation_coefficient:.2f}')
+print(f'p-value: {p_value:.2f}')
