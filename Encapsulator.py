@@ -1,3 +1,10 @@
+#General Aim of the Code
+#The purpose of this code is to connect to a PostgreSQL database
+#containing movie-related data, retrieving data from specific tables,
+#merge that data, and analyze it to find the average international box office revenue grouped by creative type. 
+#Finally, it displays the top five creative types based on their average revenue.
+
+
 import pyodbc                          #pydoc library used to connect to databases.
 import pandas as pd                    #pandas data manipulation library, alias pd.
 
