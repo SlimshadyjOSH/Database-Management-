@@ -7,6 +7,7 @@
 
 import psycopg2  # PostgreSQL database adapter for Python
 import pandas as pd  # Library for data manipulation and analysis
+import numpy as np  # Add this import for numpy
 
 # Class for managing database operations related to the Movie database
 class MovieDatabaseManager:
@@ -53,7 +54,7 @@ class MovieDatabaseManager:
             print("No connection to close.")  # If no connection is open, print a message
 
 # Initialize the database connection manager with the necessary details
-db = Database('localhost', 'Movies', 'postgres', '*****')
+db = MovieDatabaseManager('localhost', 'Movies', 'postgres', '*****')
 db.connect_to_database()  # Establish connection to the database
 
 # Retrieve data from the movies, creative, and revenue tables
